@@ -76,7 +76,7 @@ SOFTWARE.
 [travis-ci]: https://travis-ci.org/the-kbA-team/memory-container "the-kbA-team/memory-container - Travis CI"
 [build-status-master]: https://api.travis-ci.org/the-kbA-team/memory-container.svg?branch=master
 [maintainability-badge]: https://api.codeclimate.com/v1/badges/21ee0b3bcc3f1fa0a03d/maintainability
-[maintainability]: ]https://codeclimate.com/github/the-kbA-team/memory-container/maintainability
+[maintainability]: https://codeclimate.com/github/the-kbA-team/memory-container/maintainability
 [coverage-badge]: https://api.codeclimate.com/v1/badges/21ee0b3bcc3f1fa0a03d/test_coverage
 [coverage]: https://codeclimate.com/github/the-kbA-team/memory-container/test_coverage
 [composer]: https://getcomposer.org/ "Dependency Manager for PHP"
