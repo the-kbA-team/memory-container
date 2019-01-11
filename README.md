@@ -1,6 +1,7 @@
 # Memory container
 
 [![License: MIT][license-mit]](LICENSE)
+[![PHP Version][phpversion]][packagist]
 [![Build Status][build-status-master]][travis-ci]
 [![Maintainability][maintainability-badge]][maintainability]
 [![Test Coverage][coverage-badge]][coverage]
@@ -73,6 +74,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 [license-mit]: https://img.shields.io/badge/license-MIT-blue.svg
+[phpversion]: https://img.shields.io/packagist/php-v/kba-team/memory-container.svg
+[packagist]: https://packagist.org/packages/kba-team/memory-container
 [travis-ci]: https://travis-ci.org/the-kbA-team/memory-container "the-kbA-team/memory-container - Travis CI"
 [build-status-master]: https://api.travis-ci.org/the-kbA-team/memory-container.svg?branch=master
 [maintainability-badge]: https://api.codeclimate.com/v1/badges/21ee0b3bcc3f1fa0a03d/maintainability
