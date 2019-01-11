@@ -49,7 +49,7 @@ class ContainerTest extends \PHPUnit_Framework_TestCase
     /**
      * Test retrieving a non-existent entry.
      * @expectedException \kbATeam\MemoryContainer\NotFoundException
-     * @expectedExceptionMessage Requested ID tuToievS not found
+     * @expectedExceptionMessage tuToievS not found
      */
     public function testNotFoundException()
     {

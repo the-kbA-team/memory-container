@@ -44,7 +44,7 @@ class Container implements ContainerInterface
         if ($this->has($stringId)) {
             return $this->storage[$stringId];
         }
-        throw new NotFoundException(sprintf('Requested ID %s not found', $stringId));
+        throw new NotFoundException(sprintf('%s not found', $stringId));
     }
 
     /**
