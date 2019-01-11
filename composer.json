@@ -3,6 +3,11 @@
     "description": "PSR-11 container storing its values in memory and offering a singleton access.",
     "type": "library",
     "license": "MIT",
+    "authors": [
+        {
+            "name": "Gregor J."
+        }
+    ],
     "support": {
         "issues": "https://github.com/the-kbA-team/memory-container/issues"
     },
@@ -13,6 +18,9 @@
         "singleton"
     ],
     "minimum-stability": "stable",
+    "provide": {
+        "psr/container": "^1.0"
+    },
     "require": {
         "php": "^5.5|^7.0",
         "psr/container": "^1.0"
