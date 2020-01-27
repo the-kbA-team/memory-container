@@ -1,7 +1,6 @@
 # Memory container
 
 [![License: MIT][license-mit]](LICENSE)
-[![PHP Version][phpversion]][packagist]
 [![Build Status][build-status-php5]][travis-ci]
 
 PSR-11 container storing its values in memory and offering a singleton access.
@@ -72,7 +71,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 [license-mit]: https://img.shields.io/badge/license-MIT-blue.svg
-[phpversion]: https://img.shields.io/packagist/php-v/kba-team/memory-container.svg
 [packagist]: https://packagist.org/packages/kba-team/memory-container
 [travis-ci]: https://travis-ci.org/the-kbA-team/memory-container "the-kbA-team/memory-container - Travis CI"
 [build-status-php5]: https://api.travis-ci.org/the-kbA-team/memory-container.svg?branch=php5
