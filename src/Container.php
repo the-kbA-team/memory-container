@@ -60,7 +60,7 @@ class Container implements ContainerInterface
      * @return bool
      * @throws \InvalidArgumentException The ID was no string or an empty string.
      */
-    public function has($id)
+    public function has($id): bool
     {
         return array_key_exists($this->validateId($id), $this->storage);
     }
@@ -86,7 +86,7 @@ class Container implements ContainerInterface
      * @return string
      * @throws \InvalidArgumentException The ID was no string or an empty string.
      */
-    protected function validateId($id)
+    protected function validateId($id): string
     {
         if (!is_string($id)) {
             throw new InvalidArgumentException('Expected ID to be a string!');
@@ -106,7 +106,7 @@ class Container implements ContainerInterface
      *
      * @return \kbATeam\MemoryContainer\Container
      */
-    public static function singleton()
+    public static function singleton(): Container
     {
         static $instance = null;
         if ($instance === null) {
