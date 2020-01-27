@@ -12,6 +12,7 @@
 namespace kbATeam\MemoryContainer;
 
 use Psr\Container\ContainerExceptionInterface;
+use RuntimeException;
 
 /**
  * Class kbATeam\MemoryContainer\ContainerException
@@ -22,6 +23,6 @@ use Psr\Container\ContainerExceptionInterface;
  * @author  Gregor J.
  * @license MIT
  */
-class ContainerException extends \RuntimeException implements ContainerExceptionInterface
+class ContainerException extends RuntimeException implements ContainerExceptionInterface
 {
 }

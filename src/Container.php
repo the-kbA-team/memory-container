@@ -11,6 +11,7 @@
 
 namespace kbATeam\MemoryContainer;
 
+use InvalidArgumentException;
 use Psr\Container\ContainerInterface;
 
 /**
@@ -88,11 +89,11 @@ class Container implements ContainerInterface
     protected function validateId($id)
     {
         if (!is_string($id)) {
-            throw new \InvalidArgumentException('Expected ID to be a string!');
+            throw new InvalidArgumentException('Expected ID to be a string!');
         }
         $resultId = trim($id);
         if ($resultId === '') {
-            throw new \InvalidArgumentException('Expected ID to have at least one character.');
+            throw new InvalidArgumentException('Expected ID to have at least one character.');
         }
         return $resultId;
     }
