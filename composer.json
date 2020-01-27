@@ -3,11 +3,6 @@
     "description": "PSR-11 container storing its values in memory and offering a singleton access.",
     "type": "library",
     "license": "MIT",
-    "authors": [
-        {
-            "name": "Gregor J."
-        }
-    ],
     "support": {
         "issues": "https://github.com/the-kbA-team/memory-container/issues"
     },
