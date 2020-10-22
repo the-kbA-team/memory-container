@@ -14,7 +14,7 @@
     ],
     "minimum-stability": "stable",
     "provide": {
-        "psr/container": "^1.0"
+        "psr/container-implementation": "^1.0"
     },
     "require": {
         "php": "^7.0",
