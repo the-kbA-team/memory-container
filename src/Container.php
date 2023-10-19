@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace kbATeam\MemoryContainer;
 
 use InvalidArgumentException;
@@ -19,7 +21,7 @@ class Container implements ContainerInterface
     /**
      * @var array in-memory storage
      */
-    private $storage = [];
+    private array $storage = [];
 
     /**
      * Finds an entry of the container by its identifier and returns it.
@@ -30,7 +32,7 @@ class Container implements ContainerInterface
      * @throws InvalidArgumentException The ID was no string or an empty string.
      * @throws NotFoundException No entry was found for **this** identifier.
      */
-    public function get($id)
+    public function get(string $id)
     {
         $stringId = $this->validateId($id);
         if ($this->has($stringId)) {
@@ -51,7 +53,7 @@ class Container implements ContainerInterface
      * @return bool
      * @throws InvalidArgumentException The ID was no string or an empty string.
      */
-    public function has($id): bool
+    public function has(string $id): bool
     {
         return array_key_exists($this->validateId($id), $this->storage);
     }
@@ -65,7 +67,7 @@ class Container implements ContainerInterface
      * @param mixed $value Content of the entry to add.
      * @throws InvalidArgumentException The ID was no string or an empty string.
      */
-    public function set($id, $value)
+    public function set(string $id, $value)
     {
         $stringId = $this->validateId($id);
         $this->storage[$stringId] = $value;
@@ -73,15 +75,12 @@ class Container implements ContainerInterface
 
     /**
      * Validate an ID for the other methods.
-     * @param mixed $id The ID to validate.
+     * @param string $id The ID to validate.
      * @return string
      * @throws InvalidArgumentException The ID was no string or an empty string.
      */
-    protected function validateId($id): string
+    protected function validateId(string $id): string
     {
-        if (!is_string($id)) {
-            throw new InvalidArgumentException('Expected ID to be a string!');
-        }
         $resultId = trim($id);
         if ($resultId === '') {
             throw new InvalidArgumentException('Expected ID to have at least one character.');

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace kbATeam\MemoryContainer;
 
 use Psr\Container\NotFoundExceptionInterface;

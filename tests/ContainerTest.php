@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\kbATeam\MemoryContainer;
 
 use InvalidArgumentException;
@@ -56,18 +58,12 @@ class ContainerTest extends TestCase
      * Data provider for invalid IDs.
      * @return array
      */
-    public static function invalidIds()
+    public static function invalidIds(): array
     {
         return [
             [''],
             ["\t"],
             [' '],
-            [187],
-            [56.2],
-            [null],
-            [true],
-            [false],
-            [new stdClass()]
         ];
     }
 
