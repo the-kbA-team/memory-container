@@ -1,13 +1,4 @@
 <?php
-/**
- * File src/ContainerException.php
- *
- * Generic memory container exception.
- *
- * @package memory-container
- * @author  Gregor J.
- * @license MIT
- */
 
 namespace kbATeam\MemoryContainer;
 

@@ -1,13 +1,4 @@
 <?php
-/**
- * File src/Container.php
- *
- * PSR-11 container class.
- *
- * @package memory-container
- * @author  Gregor J.
- * @license MIT
- */
 
 namespace kbATeam\MemoryContainer;
 
