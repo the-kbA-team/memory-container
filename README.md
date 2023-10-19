@@ -2,9 +2,6 @@
 
 [![License: MIT][license-mit]](LICENSE)
 [![PHP Version][phpversion]][packagist]
-[![Build Status][build-status-master]][travis-ci]
-[![Maintainability][maintainability-badge]][maintainability]
-[![Test Coverage][coverage-badge]][coverage]
 
 PSR-11 container storing its values in memory and offering a singleton access.
 
@@ -74,13 +71,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 [license-mit]: https://img.shields.io/badge/license-MIT-blue.svg
-[phpversion]: https://img.shields.io/packagist/php-v/kba-team/memory-container.svg
+[phpversion]: https://img.shields.io/packagist/php-v/kba-team/memory-container/dev-php5
 [packagist]: https://packagist.org/packages/kba-team/memory-container
-[travis-ci]: https://travis-ci.org/the-kbA-team/memory-container "the-kbA-team/memory-container - Travis CI"
-[build-status-master]: https://api.travis-ci.org/the-kbA-team/memory-container.svg?branch=master
-[maintainability-badge]: https://api.codeclimate.com/v1/badges/21ee0b3bcc3f1fa0a03d/maintainability
-[maintainability]: https://codeclimate.com/github/the-kbA-team/memory-container/maintainability
-[coverage-badge]: https://api.codeclimate.com/v1/badges/21ee0b3bcc3f1fa0a03d/test_coverage
-[coverage]: https://codeclimate.com/github/the-kbA-team/memory-container/test_coverage
 [composer]: https://getcomposer.org/ "Dependency Manager for PHP"
 [psr11]: https://www.php-fig.org/psr/psr-11/ "PSR-11: Container interface"
