@@ -1,17 +1,9 @@
 <?php
-/**
- * File tests/ContainerTest.php
- *
- * Test the container class.
- *
- * @package memory-container
- * @author  Gregor J.
- * @license MIT
- */
 
 namespace Tests\kbATeam\MemoryContainer;
 
 use kbATeam\MemoryContainer\Container;
+use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
 
 /**
@@ -23,7 +15,7 @@ use Psr\Container\ContainerInterface;
  * @author  Gregor J.
  * @license MIT
  */
-class ContainerTest extends \PHPUnit_Framework_TestCase
+class ContainerTest extends TestCase
 {
     /**
      * Test for PSR-11 container interface.
@@ -48,12 +40,12 @@ class ContainerTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Test retrieving a non-existent entry.
-     * @expectedException \kbATeam\MemoryContainer\NotFoundException
-     * @expectedExceptionMessage tuToievS not found
      */
     public function testNotFoundException()
     {
         $container = new Container();
+        $this->expectException(\kbATeam\MemoryContainer\NotFoundException::class);
+        $this->expectExceptionMessage('tuToievS not found');
         $container->get('tuToievS');
     }
 
@@ -80,11 +72,11 @@ class ContainerTest extends \PHPUnit_Framework_TestCase
      * Test invalid IDs on the has method.
      * @param mixed $id The invalid ID.
      * @dataProvider invalidIds
-     * @expectedException \InvalidArgumentException
      */
     public function testInvalidIdsOnHas($id)
     {
         $container = new Container();
+        $this->expectException(\InvalidArgumentException::class);
         $container->has($id);
     }
 
@@ -92,11 +84,11 @@ class ContainerTest extends \PHPUnit_Framework_TestCase
      * Test invalid IDs on the get method.
      * @param mixed $id The invalid ID.
      * @dataProvider invalidIds
-     * @expectedException \InvalidArgumentException
      */
     public function testInvalidIdsOnGet($id)
     {
         $container = new Container();
+        $this->expectException(\InvalidArgumentException::class);
         $container->get($id);
     }
 
@@ -104,11 +96,11 @@ class ContainerTest extends \PHPUnit_Framework_TestCase
      * Test invalid IDs on the set method.
      * @param mixed $id The invalid ID.
      * @dataProvider invalidIds
-     * @expectedException \InvalidArgumentException
      */
     public function testInvalidIdsOnSet($id)
     {
         $container = new Container();
+        $this->expectException(\InvalidArgumentException::class);
         $container->set($id, null);
     }
 
