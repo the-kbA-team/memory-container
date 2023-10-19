@@ -16,6 +16,7 @@ jobs:
       matrix:
         php-version:
           - "7.4"
+          - "8.1"
     env:
       CC_TEST_REPORTER_ID: "e51e84b2cfd9f74e5e66d62576a4ee3b6ae666cb25ca7087c5c674bb1f400343"
     name: "PHP ${{ matrix.php-version }}"
