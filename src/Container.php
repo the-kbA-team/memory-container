@@ -25,10 +25,10 @@ class Container implements ContainerInterface
      * Finds an entry of the container by its identifier and returns it.
      *
      * @param string $id Identifier of the entry to look for.
-     * @throws \kbATeam\MemoryContainer\NotFoundException No entry was found for **this** identifier.
-     * @throws \kbATeam\MemoryContainer\ContainerException Error while retrieving the entry.
-     * @throws \InvalidArgumentException The ID was no string or an empty string.
      * @return mixed Entry.
+     * @throws ContainerException Error while retrieving the entry.
+     * @throws InvalidArgumentException The ID was no string or an empty string.
+     * @throws NotFoundException No entry was found for **this** identifier.
      */
     public function get($id)
     {
@@ -49,7 +49,7 @@ class Container implements ContainerInterface
      *
      * @param string $id Identifier of the entry to look for.
      * @return bool
-     * @throws \InvalidArgumentException The ID was no string or an empty string.
+     * @throws InvalidArgumentException The ID was no string or an empty string.
      */
     public function has($id): bool
     {
@@ -63,7 +63,7 @@ class Container implements ContainerInterface
      *
      * @param string $id Identifier of the entry to add.
      * @param mixed $value Content of the entry to add.
-     * @throws \InvalidArgumentException The ID was no string or an empty string.
+     * @throws InvalidArgumentException The ID was no string or an empty string.
      */
     public function set($id, $value)
     {
@@ -75,7 +75,7 @@ class Container implements ContainerInterface
      * Validate an ID for the other methods.
      * @param mixed $id The ID to validate.
      * @return string
-     * @throws \InvalidArgumentException The ID was no string or an empty string.
+     * @throws InvalidArgumentException The ID was no string or an empty string.
      */
     protected function validateId($id): string
     {
@@ -95,7 +95,7 @@ class Container implements ContainerInterface
      * Singleton pattern taken from Stackoverflow ;-)
      * https://stackoverflow.com/questions/203336/creating-the-singleton-design-pattern-in-php5
      *
-     * @return \kbATeam\MemoryContainer\Container
+     * @return Container
      */
     public static function singleton(): Container
     {

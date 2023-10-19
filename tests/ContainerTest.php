@@ -2,9 +2,12 @@
 
 namespace Tests\kbATeam\MemoryContainer;
 
+use InvalidArgumentException;
 use kbATeam\MemoryContainer\Container;
+use kbATeam\MemoryContainer\NotFoundException;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
+use stdClass;
 
 /**
  * Class Tests\kbATeam\MemoryContainer\ContainerTest
@@ -32,10 +35,10 @@ class ContainerTest extends TestCase
     public function testSimpleAddHasGet()
     {
         $container = new Container();
-        $container->set('wP7rpYZg', new \stdClass());
+        $container->set('wP7rpYZg', new stdClass());
         static::assertTrue($container->has('wP7rpYZg'));
         $result = $container->get('wP7rpYZg');
-        static::assertInstanceOf(\stdClass::class, $result);
+        static::assertInstanceOf(stdClass::class, $result);
     }
 
     /**
@@ -44,7 +47,7 @@ class ContainerTest extends TestCase
     public function testNotFoundException()
     {
         $container = new Container();
-        $this->expectException(\kbATeam\MemoryContainer\NotFoundException::class);
+        $this->expectException(NotFoundException::class);
         $this->expectExceptionMessage('tuToievS not found');
         $container->get('tuToievS');
     }
@@ -64,7 +67,7 @@ class ContainerTest extends TestCase
             [null],
             [true],
             [false],
-            [new \stdClass()]
+            [new stdClass()]
         ];
     }
 
@@ -76,7 +79,7 @@ class ContainerTest extends TestCase
     public function testInvalidIdsOnHas($id)
     {
         $container = new Container();
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         $container->has($id);
     }
 
@@ -88,7 +91,7 @@ class ContainerTest extends TestCase
     public function testInvalidIdsOnGet($id)
     {
         $container = new Container();
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         $container->get($id);
     }
 
@@ -100,7 +103,7 @@ class ContainerTest extends TestCase
     public function testInvalidIdsOnSet($id)
     {
         $container = new Container();
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         $container->set($id, null);
     }
 
