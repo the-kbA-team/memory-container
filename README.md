@@ -2,6 +2,8 @@
 
 [![License: MIT][license-mit]](LICENSE)
 [![PHP Version][phpversion]][packagist]
+[![Maintainability][maintainability-badge]][maintainability]
+[![Test Coverage][coverage-badge]][coverage]
 
 PSR-11 container storing its values in memory and offering a singleton access.
 
@@ -48,30 +50,12 @@ Call phpunit to run the tests available.
 vendor/bin/phpunit
 ```
 
-## [MIT License](LICENSE)
-
-Copyright (c) 2019 the-kbA-team
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
 [license-mit]: https://img.shields.io/badge/license-MIT-blue.svg
 [phpversion]: https://img.shields.io/packagist/php-v/kba-team/memory-container/dev-php5
+[maintainability-badge]: https://api.codeclimate.com/v1/badges/21ee0b3bcc3f1fa0a03d/maintainability
+[maintainability]: https://codeclimate.com/github/the-kbA-team/memory-container/maintainability
+[coverage-badge]: https://api.codeclimate.com/v1/badges/21ee0b3bcc3f1fa0a03d/test_coverage
+[coverage]: https://codeclimate.com/github/the-kbA-team/memory-container/test_coverage
 [packagist]: https://packagist.org/packages/kba-team/memory-container
 [composer]: https://getcomposer.org/ "Dependency Manager for PHP"
 [psr11]: https://www.php-fig.org/psr/psr-11/ "PSR-11: Container interface"
