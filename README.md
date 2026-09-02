@@ -27,7 +27,7 @@ class Greeter
 use kbATeam\MemoryContainer\Container;
 use vendor\product\Greeter;
 
-Container::singleton()->add('hello', function ($what) {
+Container::singleton()->set('hello', function ($what) {
     return sprintf('Hello %s!', $what);
 });
 // ...
@@ -36,7 +36,7 @@ $example = new Greeter(Container::singleton()->get('hello'));
 
 ## Development
 
-All development commands (install, test, lint, analyze, beautify, sniff, audit,
+All development commands (install, test, lint, beautify, sniff, audit,
 validate) run via Docker through the `Makefile`, so no local PHP installation is
 needed. Run `make help` to list all targets. Most targets require `PHP_VERSION`,
 e.g.:
