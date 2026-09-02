@@ -54,7 +54,8 @@ install: check-php-version ## Install composer dependencies for PHP_VERSION (set
 			composer config platform.php "$(PHP_VERSION)" && \
 			composer $(COMPOSER_INSTALL_CMD) --prefer-dist --no-interaction --no-progress; \
 			status=$$?; \
-			composer config --unset platform.php; \
+			composer config --unset platform; \
+			composer config --unset config 2>/dev/null; \
 			exit $$status \
 		'
 
