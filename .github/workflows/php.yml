@@ -18,7 +18,7 @@ jobs:
     runs-on: "ubuntu-latest"
     steps:
       - name: "git checkout"
-        uses: "actions/checkout@v4"
+        uses: "actions/checkout@v7"
 
       - name: "composer validate"
         run: "composer validate --strict"
@@ -42,7 +42,7 @@ jobs:
 
     steps:
       - name: "git checkout"
-        uses: "actions/checkout@v4"
+        uses: "actions/checkout@v7"
 
       - name: "setup PHP"
         uses: "shivammathur/setup-php@v2"
