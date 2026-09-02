@@ -1,9 +1,8 @@
 # Memory container
 
 [![License: MIT][license-mit]](LICENSE)
-[![PHP Version][phpversion]][packagist]
 
-PSR-11 container storing its values in memory and offering a singleton access.
+[PSR-11] container storing its values in memory and offering a singleton access.
 
 ## Usage
 
@@ -46,7 +45,4 @@ make install PHP_VERSION=8.1
 ```
 
 [license-mit]: https://img.shields.io/badge/license-MIT-blue.svg
-[phpversion]: https://img.shields.io/packagist/php-v/kba-team/memory-container
-[packagist]: https://packagist.org/packages/kba-team/memory-container
-[composer]: https://getcomposer.org/ "Dependency Manager for PHP"
-[psr11]: https://www.php-fig.org/psr/psr-11/ "PSR-11: Container interface"
+[PSR-11]: https://www.php-fig.org/psr/psr-11/ "PSR-11: Container interface"
