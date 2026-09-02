@@ -32,7 +32,7 @@ class Container implements ContainerInterface
      * @throws InvalidArgumentException The ID was no string or an empty string.
      * @throws NotFoundException No entry was found for **this** identifier.
      */
-    public function get(string $id)
+    public function get(string $id): mixed
     {
         $stringId = $this->validateId($id);
         if ($this->has($stringId)) {
