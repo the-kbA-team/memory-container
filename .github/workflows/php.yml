@@ -1,70 +1,76 @@
-name: "PHP"
+name: "CI"
+
 on:
   push:
-    branches:
-      - "main"
   pull_request:
-    branches:
-      - "main"
+  workflow_dispatch:
+
 permissions:
   contents: "read"
+
+concurrency:
+  group: "ci-${{ github.workflow }}-${{ github.ref }}"
+  cancel-in-progress: true
+
 jobs:
-  # PHP lint for different PHP versions
-  build:
+  composer:
+    name: "composer config validation"
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: "git checkout"
+        uses: "actions/checkout@v4"
+
+      - name: "composer validate"
+        run: "composer validate --strict"
+
+  php:
+    name: "PHP ${{ matrix.php-version }} (${{ matrix.dependencies }})"
     runs-on: "ubuntu-latest"
     strategy:
+      fail-fast: false
       matrix:
         php-version:
-          - "7.4"
           - "8.1"
-    env:
-      CC_TEST_REPORTER_ID: "e51e84b2cfd9f74e5e66d62576a4ee3b6ae666cb25ca7087c5c674bb1f400343"
-    name: "PHP ${{ matrix.php-version }}"
+          - "8.2"
+          - "8.3"
+          - "8.4"
+        dependencies:
+          - "default"
+        include:
+          - php-version: "8.1"
+            dependencies: "lowest"
+
     steps:
-      - # git checkout
-        name: "git checkout"
-        uses: "actions/checkout@v3"
-      - # Setup PHP
-        name: "Setup PHP"
+      - name: "git checkout"
+        uses: "actions/checkout@v4"
+
+      - name: "setup PHP"
         uses: "shivammathur/setup-php@v2"
         with:
           php-version: "${{ matrix.php-version }}"
-          coverage: "xdebug"
-      - # Check PHP version
-        name: "Check PHP version"
-        run: "php -v"
-      - # Lint PHP files
-        name: "Lint PHP files"
-        run: |
-          for file in $(find src/ -type f -name '*.php'); do
-            echo -n "==> ${file}: ";
-            php -l "${file}";
-          done
-      - # Validate composer.json and composer.lock
-        name: "Validate composer.json and composer.lock"
-        run: "composer validate --strict"
-      - # Cache Composer packages
-        name: "Cache Composer packages"
-        id: "composer-cache"
-        uses: "actions/cache@v3"
-        with:
-          path: "vendor"
-          key: "${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}"
-          restore-keys: "${{ runner.os }}-php-"
-      - # Install dependencies
-        name: "Install composer dependencies"
-        run: "composer install --prefer-dist --no-progress"
-      - # PHP_CodeSniffer
-        name: "PHP_CodeSniffer"
+
+      - name: "install composer dependencies (default)"
+        if: "matrix.dependencies == 'default'"
+        run: "composer install --prefer-dist --no-progress --no-interaction"
+
+      - name: "install composer dependencies (lowest)"
+        if: "matrix.dependencies == 'lowest'"
+        run: "composer update --prefer-lowest --prefer-dist --no-progress --no-interaction"
+
+      - name: "composer audit (default)"
+        if: "matrix.php-version == '8.1' && matrix.dependencies == 'default'"
+        run: "composer audit --no-interaction"
+
+      - name: "composer audit (lowest)"
+        if: "matrix.php-version == '8.1' && matrix.dependencies == 'lowest'"
+        run: "composer audit --no-interaction"
+
+      - name: "lint PHP files"
+        run: "find src tests -type f -name '*.php' -print0 | xargs -0 -n1 php -l"
+
+      - name: "PHP_CodeSniffer"
         run: "php vendor/bin/phpcs"
-      - # CodeClimate Reporter Setup
-        name: "CodeClimate Reporter Setup"
-        run: |
-          curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-          chmod +x ./cc-test-reporter
-          ./cc-test-reporter before-build
-      - # Run phpunit
-        name: "Run phpunit"
-        run: |
-          php vendor/bin/phpunit --coverage-clover clover.xml --coverage-text
-          ./cc-test-reporter after-build -t clover --exit-code $?
+
+      - name: "Run phpunit"
+        run: "php vendor/bin/phpunit --colors=never"
+
