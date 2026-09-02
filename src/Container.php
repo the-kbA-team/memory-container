@@ -32,7 +32,7 @@ class Container implements ContainerInterface
      * @throws InvalidArgumentException The ID was no string or an empty string.
      * @throws NotFoundException No entry was found for **this** identifier.
      */
-    public function get(string $id): mixed
+    public function get($id)
     {
         $stringId = $this->validateId($id);
         if ($this->has($stringId)) {
@@ -53,7 +53,7 @@ class Container implements ContainerInterface
      * @return bool
      * @throws InvalidArgumentException The ID was no string or an empty string.
      */
-    public function has(string $id): bool
+    public function has($id): bool
     {
         return array_key_exists($this->validateId($id), $this->storage);
     }
@@ -67,7 +67,7 @@ class Container implements ContainerInterface
      * @param mixed $value Content of the entry to add.
      * @throws InvalidArgumentException The ID was no string or an empty string.
      */
-    public function set(string $id, $value)
+    public function set($id, $value)
     {
         $stringId = $this->validateId($id);
         $this->storage[$stringId] = $value;
@@ -79,7 +79,7 @@ class Container implements ContainerInterface
      * @return string
      * @throws InvalidArgumentException The ID was no string or an empty string.
      */
-    protected function validateId(string $id): string
+    protected function validateId($id): string
     {
         $resultId = trim($id);
         if ($resultId === '') {
