@@ -1,8 +1,8 @@
-name: "CI"
+name: "CI pipeline"
 
 on:
-  push:
   pull_request:
+    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -13,14 +13,13 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+
   composer:
     name: "composer config validation"
     runs-on: "ubuntu-latest"
     steps:
-      - name: "git checkout"
-        uses: "actions/checkout@v7"
-
-      - name: "composer validate"
+      - uses: "actions/checkout@v7"
+      - name: "Validate composer.json"
         run: "composer validate --strict"
 
   php:
@@ -34,43 +33,20 @@ jobs:
           - "8.2"
           - "8.3"
           - "8.4"
+          - "8.5"
         dependencies:
           - "default"
         include:
           - php-version: "8.1"
             dependencies: "lowest"
-
+          - php-version: "8.5"
+            dependencies: "lowest"
     steps:
       - name: "git checkout"
         uses: "actions/checkout@v7"
-
-      - name: "setup PHP"
-        uses: "shivammathur/setup-php@v2"
         with:
-          php-version: "${{ matrix.php-version }}"
-
-      - name: "install composer dependencies (default)"
-        if: "matrix.dependencies == 'default'"
-        run: "composer install --prefer-dist --no-progress --no-interaction"
-
-      - name: "install composer dependencies (lowest)"
-        if: "matrix.dependencies == 'lowest'"
-        run: "composer update --prefer-lowest --prefer-dist --no-progress --no-interaction"
-
-      - name: "composer audit (default)"
-        if: "matrix.php-version == '8.1' && matrix.dependencies == 'default'"
-        run: "composer audit --no-interaction"
-
-      - name: "composer audit (lowest)"
-        if: "matrix.php-version == '8.1' && matrix.dependencies == 'lowest'"
-        run: "composer audit --no-interaction"
-
-      - name: "lint PHP files"
-        run: "find src tests -type f -name '*.php' -print0 | xargs -0 -n1 php -l"
-
-      - name: "PHP_CodeSniffer"
-        run: "php vendor/bin/phpcs"
-
-      - name: "Run phpunit"
-        run: "php vendor/bin/phpunit --colors=never"
-
+          persist-credentials: false
+      - name: "Install, check and audit the same dependency snapshot"
+        env:
+          LOWEST: "${{ matrix.dependencies == 'lowest' && '1' || '0' }}"
+        run: "make check PHP_VERSION=${{ matrix.php-version }} DEPENDENCIES_LOWEST=$LOWEST"
