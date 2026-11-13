@@ -21,7 +21,8 @@
 
 ## Testing and verification workflow
 - Prefer the `Makefile`; it is the documented developer entry point in `README.md`.
-- Most targets require `PHP_VERSION`, for example:
+- Run all QA and audit one resolved snapshot with `make check PHP_VERSION=8.1` or `make check PHP_VERSION=8.5 DEPENDENCIES_LOWEST=1`.
+- Individual targets include:
   - `make install PHP_VERSION=8.1`
   - `make test PHP_VERSION=8.1`
   - `make lint PHP_VERSION=8.1`
@@ -29,7 +30,7 @@
   - `make sniff PHP_VERSION=8.1`
 - All build/test/style commands run in Docker containers from the `Makefile`; do not assume a local PHP runtime.
 - `make install` switches to `composer update --prefer-lowest` when `DEPENDENCIES_LOWEST=1` is set. Preserve that behavior if you touch dependency workflows.
-- Proxy and certificate passthrough are already built into `Makefile` (`HTTP_PROXY`, `HTTPS_PROXY`, `NO_PROXY`, optional `CA_CERT_FILE`). Keep those environment hooks intact.
+- See README for the PHP matrix, locking, proxy and CA configuration.
 
 ## Conventions visible in the codebase
 - PHP 8.1+ only (`composer.json`), `declare(strict_types=1);` in every source and test file.
@@ -44,4 +45,3 @@
 - Keep this library minimal; new abstractions are usually unnecessary unless they are required by PSR-11 behavior.
 - If you change ID validation, exception messages, or singleton behavior, update `tests/ContainerTest.php` in the same change because those behaviors are asserted directly.
 - If you touch public API examples or naming, reconcile `README.md` with the actual implementation so docs and tests stop drifting.
-
